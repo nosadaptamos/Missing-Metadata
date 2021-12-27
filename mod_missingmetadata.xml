@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension type="module" version="2.5" client="administrator" method="upgrade">
+	<name>Missing MetaData</name>
+	<creationDate>September 2012</creationDate>
+	<author>Jordi Sala</author>
+	<authorEmail>info@nosadaptamos.com</authorEmail>
+	<copyright>Copyright (C) 2012 NosAdaptamos.com</copyright>
+	<license>GNU GPLv3 - http://www.gnu.org/licenses/gpl.html</license>
+	<version>1.0.1</version>
+	<description>MOD_MISSINGMETADATA_XML_DESCRIPTION</description>
+	
+	<files>
+		<filename module="mod_missingmetadata">mod_missingmetadata.php</filename>
+		<filename>helper.php</filename>
+		<filename>index.html</filename>
+		<folder>tmpl</folder>
+	</files>
+	
+	<languages folder="language">
+        <language tag="en-GB">en-GB/en-GB.mod_missingmetadata.ini</language>
+        <language tag="en-GB">en-GB/en-GB.mod_missingmetadata.sys.ini</language>
+        <language tag="es-ES">es-ES/es-ES.mod_missingmetadata.ini</language>
+        <language tag="es-ES">es-ES/es-ES.mod_missingmetadata.sys.ini</language>
+	<language tag="ca-ES">ca-ES/ca-ES.mod_missingmetadata.ini</language>
+        <language tag="ca-ES">ca-ES/ca-ES.mod_missingmetadata.sys.ini</language>
+    </languages>
+    
+	<config>
+		<fields name="params">
+			<fieldset name="articles">
+				<field name="arti_count" type="text" default="5" label="MOD_MISSINGMETADATA_FIELD_COUNT_LABEL" description="MOD_MISSINGMETADATA_FIELD_COUNT_DESC" />
+				<field name="arti_ordering" type="list" default="c_dsc" label="MOD_MISSINGMETADATA_FIELD_ORDERING_LABEL" description="MOD_MISSINGMETADATA_FIELD_ORDERING_DESC">
+					<option value="c_dsc">MOD_MISSINGMETADATA_FIELD_VALUE_ORDERING_ADDED</option>
+					<option value="m_dsc">MOD_MISSINGMETADATA_FIELD_VALUE_ORDERING_MODIFIED</option>
+				</field>
+			</fieldset>
+			<fieldset name="categories">
+				<field name="cate_count" type="text" default="5" label="MOD_MISSINGMETADATA_FIELD_COUNT_LABEL" description="MOD_MISSINGMETADATA_FIELD_COUNT_DESC" />
+				<field name="cate_ordering" type="list" default="c_dsc" label="MOD_MISSINGMETADATA_FIELD_ORDERING_LABEL" description="MOD_MISSINGMETADATA_FIELD_ORDERING_DESC">
+					<option value="c_dsc">MOD_MISSINGMETADATA_FIELD_VALUE_ORDERING_ADDED</option>
+					<option value="m_dsc">MOD_MISSINGMETADATA_FIELD_VALUE_ORDERING_MODIFIED</option>
+				</field>
+			</fieldset>
+			<fieldset name="menus">
+				<field name="menu_count" type="text" default="5" label="MOD_MISSINGMETADATA_FIELD_COUNT_LABEL" description="MOD_MISSINGMETADATA_FIELD_COUNT_DESC" />
+			</fieldset>			
+			<fieldset name="advanced">
+				<field name="layout" type="modulelayout" label="JFIELD_ALT_LAYOUT_LABEL" description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+				<field name="moduleclass_sfx" type="text" label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL" description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+				<field name="cache" type="list" default="0" label="COM_MODULES_FIELD_CACHING_LABEL" description="COM_MODULES_FIELD_CACHING_DESC">
+					<option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+				<field name="automatic_title" type="radio" default="0" label="COM_MODULES_FIELD_AUTOMATIC_TITLE_LABEL" description="COM_MODULES_FIELD_AUTOMATIC_TITLE_DESC">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>			
+</extension>
