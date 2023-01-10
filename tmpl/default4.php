@@ -11,8 +11,6 @@ use Joomla\CMS\Language\Text;
 
 // no direct access
 defined( '_JEXEC' ) or die( 'Restricted access' );
-
-\Joomla\CMS\HTML\HTMLHelper::_('bootstrap.tooltip', '.tooltip', []);
 ?>
 <?php echo HTMLHelper::_('bootstrap.startTabSet', 'myTab', array('active' => 'arti_details')); ?>
 	<?php echo HTMLHelper::_('bootstrap.addTab', 'myTab', 'arti_details', Text::_('COM_MODULES_ARTICLES_FIELDSET_LABEL')); ?>
@@ -24,7 +22,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 						<th>Título</th>
 						<th>Autor</th>
 						<th>Fecha</th>
-						<th colspan="2">Metas</th>
+						<th>Metas</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -53,21 +51,19 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 						<td>
 							<span class="small"><?php echo HTMLHelper::_('date', $item->created, 'Y-m-d'); ?></span>
 						</td>
-						<td>
+						<td nowrap>
 							<?php 
-							if (empty($item->metadesc)) {
-								echo '<a class="disabled tooltip" title="'.Text::_('MOD_MISSINGMETADATA_METADESC').':: '.Text::_("MOD_MISSINGMETADATA_RESULT_YES").'" rel="tooltip"><i class="icon-publish"></i></a>';
+							if (!empty($item->metadesc)) {
+								echo '<a class="btn btn-success btn-sm" title="Description: '.Text::_("JYes").'"><i class="fas fa-check-circle"></i></a>';
 							} else {
-								echo '<a class="disabled tooltip" title="'.Text::_('MOD_MISSINGMETADATA_METADESC').':: '.Text::_("MOD_MISSINGMETADATA_RESULT_NO") .'" rel="tooltip"><i class="icon-unpublish"></i></a>';
+								echo '<a class="btn btn-danger btn-sm" title="Description: '.Text::_("JNo") .'"><i class="fas fa-times-circle"></i></a>';
 							}
 							?>
-						</td>
-						<td>
 							<?php
-							if (empty($item->metakey)) {
-								echo '<a class="disabled tooltip" title="'.Text::_('MOD_MISSINGMETADATA_METAKEYS').':: '.Text::_("MOD_MISSINGMETADATA_RESULT_YES").'" rel="tooltip"><i class="icon-publish"></i></a>';
+							if (!empty($item->metakey)) {
+								echo '<a class="btn btn-success btn-sm" title="Keywords: '.Text::_("JYes").'"><i class="fas fa-check-circle"></i></a>';
 							} else {
-								echo '<a class="disabled tooltip" title="'.Text::_('MOD_MISSINGMETADATA_METAKEYS').':: '.Text::_("MOD_MISSINGMETADATA_RESULT_NO") .'" rel="tooltip"><i class="icon-unpublish"></i></a>';
+								echo '<a class="btn btn-danger btn-sm" title="Keywords: '.Text::_("JNo") .'"><i class="fas fa-times-circle"></i></a>';
 							}
 							?>
 						</td>						
@@ -89,7 +85,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 						<th>Título</th>
 						<th>Autor</th>
 						<th>Fecha</th>
-						<th colspan="2">Metas</th>
+						<th>Metas</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -118,21 +114,19 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 					<td>
 						<span class="small"><?php echo HTMLHelper::_('date', $item->created, 'Y-m-d'); ?></span>
 					</td>
-					<td>
+					<td nowrap>
 						<?php 
-						if (empty($item->metadesc)) {
-							echo '<a class="disabled tooltip" title="'.Text::_('MOD_MISSINGMETADATA_METADESC').':: '.Text::_("MOD_MISSINGMETADATA_RESULT_YES").'" rel="tooltip"><i class="icon-publish"></i></a>';
+						if (!empty($item->metadesc)) {
+							echo '<a class="btn btn-success btn-sm" title="Description: '.Text::_("JYes").'"><i class="fas fa-check-circle"></i></a>';
 						} else {
-							echo '<a class="disabled tooltip" title="'.Text::_('MOD_MISSINGMETADATA_METADESC').':: '.Text::_("MOD_MISSINGMETADATA_RESULT_NO") .'" rel="tooltip"><i class="icon-unpublish"></i></a>';
+							echo '<a class="btn btn-danger btn-sm" title="Description: '.Text::_("JNo") .'"><i class="fas fa-times-circle"></i></a>';
 						}
 						?>
-					</td>
-					<td>
 						<?php
-						if (empty($item->metakey)) {
-							echo '<a class="disabled tooltip" title="'.Text::_('MOD_MISSINGMETADATA_METAKEYS').':: '.Text::_("MOD_MISSINGMETADATA_RESULT_YES").'" rel="tooltip"><i class="icon-publish"></i></a>';
+						if (!empty($item->metakey)) {
+							echo '<a class="btn btn-success btn-sm" title="Keywords: '.Text::_("JYes").'"><i class="fas fa-check-circle"></i></a>';
 						} else {
-							echo '<a class="disabled tooltip" title="'.Text::_('MOD_MISSINGMETADATA_METAKEYS').':: '.Text::_("MOD_MISSINGMETADATA_RESULT_NO") .'" rel="tooltip"><i class="icon-unpublish"></i></a>';
+							echo '<a class="btn btn-danger btn-sm" title="Keywords: '.Text::_("JNo") .'"><i class="fas fa-times-circle"></i></a>';
 						}
 						?>
 					</td>						
@@ -151,8 +145,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 				<thead>
 					<tr>
 						<th>Título</th>
-						<th>Fecha</th>
-						<th colspan="2">Metas</th>
+						<th>Meta description</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -174,27 +167,15 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 							echo htmlspecialchars($item->title, ENT_QUOTES, 'UTF-8');
 						}?>
 					</td>
-					<td>
-						<span class="small"><?php echo HTMLHelper::_('date', $item->published, 'Y-m-d'); ?></span>
-					</td>
-					<td>
-						<?php 
-						if (empty($item->metadesc)) {
-							echo '<a class="disabled tooltip" title="'.Text::_('MOD_MISSINGMETADATA_METADESC').':: '.Text::_("MOD_MISSINGMETADATA_RESULT_YES").'" rel="tooltip"><i class="icon-publish"></i></a>';
-						} else {
-							echo '<a class="disabled tooltip" title="'.Text::_('MOD_MISSINGMETADATA_METADESC').':: '.Text::_("MOD_MISSINGMETADATA_RESULT_NO") .'" rel="tooltip"><i class="icon-unpublish"></i></a>';
-						}
-						?>
-					</td>
-					<td>
+					<td class="text-center">
 						<?php
-						if (empty($item->metakey)) {
-							echo '<a class="disabled tooltip" title="'.Text::_('MOD_MISSINGMETADATA_METAKEYS').':: '.Text::_("MOD_MISSINGMETADATA_RESULT_YES").'" rel="tooltip"><i class="icon-publish"></i></a>';
+						if (!empty($item->metadesc)) {
+							echo '<a class="btn btn-success btn-sm" title="Description: '.Text::_("JYes").'"><i class="fas fa-check-circle"></i></a>';
 						} else {
-							echo '<a class="disabled tooltip" title="'.Text::_('MOD_MISSINGMETADATA_METAKEYS').':: '.Text::_("MOD_MISSINGMETADATA_RESULT_NO") .'" rel="tooltip"><i class="icon-unpublish"></i></a>';
+							echo '<a class="btn btn-danger btn-sm" title="Keywords: '.Text::_("JNo") .'"><i class="fas fa-times-circle"></i></a>';
 						}
 						?>
-					</td>						
+					</td>
 				</tr>
 			<?php endforeach; ?>
 			</tbody>

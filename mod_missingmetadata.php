@@ -16,7 +16,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 require_once dirname(__FILE__).'/helper.php';
 $version = new Joomla\CMS\Version();
 
-$list = modMissingMetaDataHelper::getList($params);
+$list = modMissingMetaDataHelper::getList($params, $version->isCompatible("4.0"));
 if($version->isCompatible("4.0")){
 	$params->set('layout','default4');
 }
