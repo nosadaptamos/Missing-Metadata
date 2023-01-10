@@ -6,7 +6,7 @@
 	<authorEmail>info@nosadaptamos.com</authorEmail>
 	<copyright>Copyright (C) 2012 NosAdaptamos.com</copyright>
 	<license>GNU GPLv3 - http://www.gnu.org/licenses/gpl.html</license>
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 	<description>MOD_MISSINGMETADATA_XML_DESCRIPTION</description>
 	
 	<files>
@@ -21,7 +21,7 @@
         <language tag="en-GB">en-GB/en-GB.mod_missingmetadata.sys.ini</language>
         <language tag="es-ES">es-ES/es-ES.mod_missingmetadata.ini</language>
         <language tag="es-ES">es-ES/es-ES.mod_missingmetadata.sys.ini</language>
-	<language tag="ca-ES">ca-ES/ca-ES.mod_missingmetadata.ini</language>
+		<language tag="ca-ES">ca-ES/ca-ES.mod_missingmetadata.ini</language>
         <language tag="ca-ES">ca-ES/ca-ES.mod_missingmetadata.sys.ini</language>
     </languages>
     
@@ -56,5 +56,9 @@
 				</field>
 			</fieldset>
 		</fields>
-	</config>			
+	</config>
+
+	<updateservers>
+		<server type="extension" name="Missing MetaData">https://nosadaptamos.github.io/missing-metadata.xml</server>
+	</updateservers>
 </extension>
