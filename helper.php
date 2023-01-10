@@ -15,13 +15,13 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 class modMissingMetaDataHelper
 {
-	public static function getList($params)
+	public static function getList($params, $compatibility_j4)
 	{
 		// Initialise variables
 		$items	= array();
 		$items['articles'] = modMissingMetaDataHelper::getList_Articles($params);
 		$items['categories'] = modMissingMetaDataHelper::getList_Categories($params);
-		$items['menus'] = modMissingMetaDataHelper::getList_Menus($params);
+		$items['menus'] = ($compatibility_j4) ? modMissingMetaDataHelper::getList_Menus_J4($params) : modMissingMetaDataHelper::getList_Menus($params);
 		return $items;
 	}
 	
@@ -217,6 +217,72 @@ class modMissingMetaDataHelper
 				if (isset($params['menu-meta_description']) && isset($params['menu-meta_keywords'])) {
 					// Candidato a comprobar
 					if (empty($params['menu-meta_description']) || empty($params['menu-meta_keywords'])) {
+						if ($user->authorise('core.edit', 'com_menus')){
+							$item->link = Route::_('index.php?option=com_menus&task=item.edit&id='.(int) $item->id);
+						} else {
+							$item->link = '';
+						}
+						$item->metadesc = $params['menu-meta_description'];
+						$item->metakey = $params['menu-meta_keywords'];
+						$items_return[] = $item;
+					}
+				}
+			}
+			
+			if ($mCount>0) {
+				if (count($items_return)>=$mCount) {
+					break;
+				}
+			}
+		}
+		
+		return $items_return;
+	}
+
+	public static function getList_Menus_J4($params)
+	{
+		// Initialise variables
+		$user 	= Factory::getuser();
+		$db		= Factory::getDbo();
+		$query	= $db->getQuery(true);
+		$items 	= array();
+		$items_return = array();
+		$mCount = $params->get('menu_count', 5);
+		
+		$query->select( 'm.id, m.title, m.menutype, m.type, m.checked_out, m.checked_out_time, m.access,'
+					. ' m.published, m.params' 
+					);
+		$query->from('#__menu AS m');
+		
+		// Join over the users for the checked out user.
+		$query->select('uc.name AS editor');
+		$query->join('LEFT', '#__users AS uc ON uc.id=m.checked_out');
+		
+		$query->where('m.client_id = 0');
+		$query->where('m.type = ' . $db->quote("component") );
+		
+		$db->setQuery($query);
+		
+		try
+		{
+			$items = $db->loadObjectList();
+		}
+		catch (Exception $e){
+			echo $e->getMessage();
+			throw new \Exception($e->getMessage(), 500);
+		}
+
+		// Set the links
+		foreach ($items as &$item) {
+			if ($item->type == 'component') {
+				// 	Convert the params field to an array.
+				$registry = new Registry();
+				$registry->loadString($item->params);
+				$params = $registry->toArray();
+				// echo var_dump($params)."<hr/>";
+				if (isset($params['menu-meta_description'])) {
+					// Candidato a comprobar
+					if (empty($params['menu-meta_description'])) {
 						if ($user->authorise('core.edit', 'com_menus')){
 							$item->link = Route::_('index.php?option=com_menus&task=item.edit&id='.(int) $item->id);
 						} else {

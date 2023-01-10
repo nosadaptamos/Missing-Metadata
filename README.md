@@ -10,3 +10,6 @@ Missing Metadata adds a module in the Control Panel view of your Joomla Administ
 
 ### Version 1.0.3 [2023-01-10]
 * **[Added]** Update server
+
+### Version 1.0.4 [2023-01-10]
+* **[Added]** Bug fixed and new style for Joomla 4
