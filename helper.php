@@ -43,7 +43,7 @@ class modMissingMetaDataHelper
 		
 		$query->select( 'a.id, a.title, a.checked_out, a.checked_out_time, a.access,'
 					. ' a.created, a.created_by, a.created_by_alias, a.featured, a.state,'
-					. ' a.metakey, a.metadesc' 
+					. ' a.metakey, a.metadesc, a.attribs' 
 					);
 		$query->from('#__content AS a');
 		
@@ -112,7 +112,7 @@ class modMissingMetaDataHelper
 		$mCount = $params->get('cate_count', 5);
 		
 		$query->select( 'c.id, c.title, c.checked_out, c.checked_out_time, c.access,'
-					. ' c.created_time as created, c.created_user_id as created_by, c.published,'
+					. ' c.created_time as created, c.created_user_id as created_by, c.published as state,'
 					. ' c.metakey, c.metadesc, c.extension' 
 					);
 		$query->from('#__categories AS c');
