@@ -18,11 +18,11 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 			<table class="table">
 				<thead>
 					<tr>
-						<th>Estado</th>
-						<th>Título</th>
-						<th>Autor</th>
-						<th>Fecha</th>
-						<th>Metas</th>
+						<th><?php echo Text::_('MOD_MISSINGMETADATA_STATE'); ?></th>
+						<th><?php echo Text::_('MOD_MISSINGMETADATA_LATEST_ITEMS'); ?></th>
+						<th><?php echo Text::_('MOD_MISSINGMETADATA_CREATED_BY'); ?></th>
+						<th><?php echo Text::_('MOD_MISSINGMETADATA_CREATED'); ?></th>
+						<th><?php echo Text::_('MOD_MISSINGMETADATA_METAS'); ?></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -54,16 +54,24 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 						<td nowrap>
 							<?php 
 							if (!empty($item->metadesc)) {
-								echo '<a class="btn btn-success btn-sm" title="Description: '.Text::_("JYes").'"><i class="fas fa-check-circle"></i></a>';
+								echo '<a class="btn btn-success btn-sm" title="'.Text::_('MOD_MISSINGMETADATA_METADESC').': '.Text::_("JYes").'"><i class="fas fa-check-circle"></i></a>';
 							} else {
-								echo '<a class="btn btn-danger btn-sm" title="Description: '.Text::_("JNo") .'"><i class="fas fa-times-circle"></i></a>';
+								echo '<a class="btn btn-danger btn-sm" title="'.Text::_('MOD_MISSINGMETADATA_METADESC').': '.Text::_("JNo") .'"><i class="fas fa-times-circle"></i></a>';
 							}
 							?>
 							<?php
 							if (!empty($item->metakey)) {
-								echo '<a class="btn btn-success btn-sm" title="Keywords: '.Text::_("JYes").'"><i class="fas fa-check-circle"></i></a>';
+								echo '<a class="btn btn-success btn-sm" title="'.Text::_('MOD_MISSINGMETADATA_METAKEYS').': '.Text::_("JYes").'"><i class="fas fa-check-circle"></i></a>';
 							} else {
-								echo '<a class="btn btn-danger btn-sm" title="Keywords: '.Text::_("JNo") .'"><i class="fas fa-times-circle"></i></a>';
+								echo '<a class="btn btn-danger btn-sm" title="'.Text::_('MOD_MISSINGMETADATA_METAKEYS').': '.Text::_("JNo") .'"><i class="fas fa-times-circle"></i></a>';
+							}
+							?>
+							<?php
+							$attribs = json_decode($item->attribs);
+							if (!empty($attribs->article_page_title)) {
+								echo '<a class="btn btn-success btn-sm" title="'.Text::_('MOD_MISSINGMETADATA_TITLE').': '.Text::_("JYes").'"><i class="fas fa-check-circle"></i></a>';
+							} else {
+								echo '<a class="btn btn-danger btn-sm" title="'.Text::_('MOD_MISSINGMETADATA_TITLE').': '.Text::_("JNo") .'"><i class="fas fa-times-circle"></i></a>';
 							}
 							?>
 						</td>						
@@ -81,11 +89,11 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 			<table class="table">
 				<thead>
 					<tr>
-						<th>Estado</th>
-						<th>Título</th>
-						<th>Autor</th>
-						<th>Fecha</th>
-						<th>Metas</th>
+						<th><?php echo Text::_('MOD_MISSINGMETADATA_STATE'); ?></th>
+						<th><?php echo Text::_('MOD_MISSINGMETADATA_LATEST_ITEMS'); ?></th>
+						<th><?php echo Text::_('MOD_MISSINGMETADATA_CREATED_BY'); ?></th>
+						<th><?php echo Text::_('MOD_MISSINGMETADATA_CREATED'); ?></th>
+						<th><?php echo Text::_('MOD_MISSINGMETADATA_METAS'); ?></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -117,16 +125,16 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 					<td nowrap>
 						<?php 
 						if (!empty($item->metadesc)) {
-							echo '<a class="btn btn-success btn-sm" title="Description: '.Text::_("JYes").'"><i class="fas fa-check-circle"></i></a>';
+							echo '<a class="btn btn-success btn-sm" title="'.Text::_('MOD_MISSINGMETADATA_METADESC').': '.Text::_("JYes").'"><i class="fas fa-check-circle"></i></a>';
 						} else {
-							echo '<a class="btn btn-danger btn-sm" title="Description: '.Text::_("JNo") .'"><i class="fas fa-times-circle"></i></a>';
+							echo '<a class="btn btn-danger btn-sm" title="'.Text::_('MOD_MISSINGMETADATA_METADESC').': '.Text::_("JNo") .'"><i class="fas fa-times-circle"></i></a>';
 						}
 						?>
 						<?php
 						if (!empty($item->metakey)) {
-							echo '<a class="btn btn-success btn-sm" title="Keywords: '.Text::_("JYes").'"><i class="fas fa-check-circle"></i></a>';
+							echo '<a class="btn btn-success btn-sm" title="'.Text::_('MOD_MISSINGMETADATA_METAKEYS').': '.Text::_("JYes").'"><i class="fas fa-check-circle"></i></a>';
 						} else {
-							echo '<a class="btn btn-danger btn-sm" title="Keywords: '.Text::_("JNo") .'"><i class="fas fa-times-circle"></i></a>';
+							echo '<a class="btn btn-danger btn-sm" title="'.Text::_('MOD_MISSINGMETADATA_METAKEYS').': '.Text::_("JNo") .'"><i class="fas fa-times-circle"></i></a>';
 						}
 						?>
 					</td>						
@@ -144,8 +152,9 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 			<table class="table">
 				<thead>
 					<tr>
-						<th>Título</th>
-						<th>Meta description</th>
+						<th><?php echo Text::_('MOD_MISSINGMETADATA_LATEST_ITEMS'); ?></th>
+						<th><?php echo Text::_('MOD_MISSINGMETADATA_METADESC'); ?></th>
+						<th><?php echo Text::_('MOD_MISSINGMETADATA_MENUTITLE'); ?></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -157,22 +166,33 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 							echo HTMLHelper::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time);
 						}
 						
-						if ($item->menutype ) {
-							echo htmlspecialchars($item->menutype, ENT_QUOTES, 'UTF-8')." > ";
-						} 
-						
 						if ($item->link) {
 							echo '<a href="'.$item->link.'">' . htmlspecialchars($item->title, ENT_QUOTES, 'UTF-8') . '</a>';
 						} else {
 							echo htmlspecialchars($item->title, ENT_QUOTES, 'UTF-8');
-						}?>
+						}
+
+						if ($item->menutype ) {
+							echo '<br><small class="badge text-bg-secondary">'.htmlspecialchars($item->menutype, ENT_QUOTES, 'UTF-8').'</small>';
+						}
+						?>
 					</td>
 					<td class="text-center">
 						<?php
 						if (!empty($item->metadesc)) {
-							echo '<a class="btn btn-success btn-sm" title="Description: '.Text::_("JYes").'"><i class="fas fa-check-circle"></i></a>';
+							echo '<a class="btn btn-success btn-sm" title="'.Text::_('MOD_MISSINGMETADATA_METADESC').': '.Text::_("JYes").'"><i class="fas fa-check-circle"></i></a>';
 						} else {
-							echo '<a class="btn btn-danger btn-sm" title="Keywords: '.Text::_("JNo") .'"><i class="fas fa-times-circle"></i></a>';
+							echo '<a class="btn btn-danger btn-sm" title="'.Text::_('MOD_MISSINGMETADATA_METADESC').': '.Text::_("JNo") .'"><i class="fas fa-times-circle"></i></a>';
+						}
+						?>
+					</td>
+					<td class="text-center">
+						<?php
+						$params = json_decode($item->params);
+						if (!empty($params->page_title)) {
+							echo '<a class="btn btn-success btn-sm" title="'.Text::_('MOD_MISSINGMETADATA_MENUTITLE').': '.Text::_("JYes").'"><i class="fas fa-check-circle"></i></a>';
+						} else {
+							echo '<a class="btn btn-danger btn-sm" title="'.Text::_('MOD_MISSINGMETADATA_MENUTITLE').': '.Text::_("JNo") .'"><i class="fas fa-times-circle"></i></a>';
 						}
 						?>
 					</td>

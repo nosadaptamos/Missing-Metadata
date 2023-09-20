@@ -57,6 +57,14 @@ JHtml::_('bootstrap.tooltip');
 								echo '<a class="btn btn-micro disabled" title="'.JText::_('MOD_MISSINGMETADATA_METAKEYS').':: '.JText::_("MOD_MISSINGMETADATA_RESULT_NO") .'" rel="tooltip"><i class="icon-unpublish"></i></a>';
 							}
 							?>
+							<?php
+							$attribs = json_decode($item->attribs);
+							if (!empty($attribs->article_page_title)) {
+								echo '<a class="btn btn-micro disabled" title="'.JText::_('MOD_MISSINGMETADATA_TITLE').': '.JText::_("JYes").'" rel="tooltip"><i class="icon-publish"></i></a>';
+							} else {
+								echo '<a class="btn btn-micro disabled" title="'.JText::_('MOD_MISSINGMETADATA_TITLE').': '.JText::_("JNo") .'" rel="tooltip"><i class="icon-unpublish"></i></a>';
+							}
+							?>
 						</div>						
 					</div>
 				<?php endforeach; ?>
@@ -155,6 +163,14 @@ JHtml::_('bootstrap.tooltip');
 								echo '<a class="btn btn-micro disabled" title="'.JText::_('MOD_MISSINGMETADATA_METAKEYS').':: '.JText::_("MOD_MISSINGMETADATA_RESULT_YES").'" rel="tooltip"><i class="icon-publish"></i></a>';
 							} else {
 								echo '<a class="btn btn-micro disabled" title="'.JText::_('MOD_MISSINGMETADATA_METAKEYS').':: '.JText::_("MOD_MISSINGMETADATA_RESULT_NO") .'" rel="tooltip"><i class="icon-unpublish"></i></a>';
+							}
+							?>
+							<?php
+							$params = json_decode($item->params);
+							if (!empty($params->page_title)) {
+								echo '<a class="btn btn-micro disabled" title="'.JText::_('MOD_MISSINGMETADATA_MENUTITLE').': '.Text::_("JYes").'"><i class="icon-publish"></i></a>';
+							} else {
+								echo '<a class="btn btn-micro disabled title="'.JText::_('MOD_MISSINGMETADATA_MENUTITLE').': '.Text::_("JNo") .'"><i class="icon-unpublish"></i></a>';
 							}
 							?>
 						</div>						
