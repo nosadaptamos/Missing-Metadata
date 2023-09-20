@@ -19,7 +19,8 @@ echo JHtml::_('tabs.panel', JText::_('COM_MODULES_ARTICLES_FIELDSET_LABEL'), 'ar
 			<th><strong><?php echo JText::_('JSTATUS'); ?></strong></th>
 			<th><strong><?php echo JText::_('MOD_MISSINGMETADATA_CREATED'); ?></strong></th>
 			<th><strong><?php echo JText::_('MOD_MISSINGMETADATA_METADESC'); ?></strong></th>
-			<th><strong><?php echo JText::_('MOD_MISSINGMETADATA_METAKEYS'); ?></strong></th>			
+			<th><strong><?php echo JText::_('MOD_MISSINGMETADATA_METAKEYS'); ?></strong></th>
+			<th><strong><?php echo JText::_('MOD_MISSINGMETADATA_TITLE'); ?></strong></th>		
 		</tr>
 	</thead>
 <?php if (count($list['articles'])) : ?>
@@ -58,7 +59,17 @@ echo JHtml::_('tabs.panel', JText::_('COM_MODULES_ARTICLES_FIELDSET_LABEL'), 'ar
 					echo JText::_("MOD_MISSINGMETADATA_RESULT_NO");
 				}
 				?>
-			</td>			
+			</td>
+			<td class="center">
+				<?php
+				$attribs = json_decode($item->attribs);
+				if (empty($attribs->article_page_title)) {
+					echo JText::_("MOD_MISSINGMETADATA_RESULT_YES");
+				} else {
+					echo JText::_("MOD_MISSINGMETADATA_RESULT_NO");
+				}
+				?>
+			</td>
 		</tr>	
 	<?php endforeach; ?>
 	</tbody>	
@@ -142,7 +153,7 @@ echo JHtml::_('tabs.panel', JText::_('COM_MODULES_ARTICLES_FIELDSET_LABEL'), 'ar
 			<th><?php echo JText::_('MOD_MISSINGMETADATA_LATEST_ITEMS'); ?></th>
 			<th><strong><?php echo JText::_('JSTATUS'); ?></strong></th>
 			<th><strong><?php echo JText::_('MOD_MISSINGMETADATA_METADESC'); ?></strong></th>
-			<th><strong><?php echo JText::_('MOD_MISSINGMETADATA_METAKEYS'); ?></strong></th>			
+			<th><strong><?php echo JText::_('MOD_MISSINGMETADATA_MENUTITLE'); ?></strong></th>
 		</tr>
 	</thead>
 <?php if (count($list['menus'])) : ?>
@@ -175,14 +186,15 @@ echo JHtml::_('tabs.panel', JText::_('COM_MODULES_ARTICLES_FIELDSET_LABEL'), 'ar
 				?>
 			</td>
 			<td class="center">
-				<?php 
-				if (empty($item->metakey)) {
+				<?php
+				$params = json_decode($item->params);
+				if (empty($params->page_title)) {
 					echo JText::_("MOD_MISSINGMETADATA_RESULT_YES");
 				} else {
 					echo JText::_("MOD_MISSINGMETADATA_RESULT_NO");
 				}
 				?>
-			</td>			
+			</td>
 		</tr>	
 	<?php endforeach; ?>
 	</tbody>	
